@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShopDbModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="datetime" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="24" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="datetime" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="birthdate" Type="datetime" Nullable="false" />
+          <Property Name="hiredate" Type="datetime" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="mgrid" Type="int" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="datetime" />
+          <Property Name="deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+          <Property Name="qty" Type="smallint" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custid" Type="int" />
+          <Property Name="empid" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="datetime" Nullable="false" />
+          <Property Name="requireddate" Type="datetime" Nullable="false" />
+          <Property Name="shippeddate" Type="datetime" />
+          <Property Name="shipperid" Type="int" Nullable="false" />
+          <Property Name="freight" Type="money" Nullable="false" />
+          <Property Name="shipname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="shipaddress" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="shipcity" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipregion" Type="nvarchar" MaxLength="15" />
+          <Property Name="shippostalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="shipcountry" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="supplierid" Type="int" Nullable="false" />
+          <Property Name="categoryid" Type="int" Nullable="false" />
+          <Property Name="unitprice" Type="money" Nullable="false" />
+          <Property Name="discontinued" Type="bit" Nullable="false" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="datetime" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shippers">
+          <Key>
+            <PropertyRef Name="shipperid" />
+          </Key>
+          <Property Name="shipperid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" />
+          <Property Name="city" Type="nvarchar" MaxLength="60" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="int" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="int" />
+          <Property Name="deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="15" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="country" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="24" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="creation_user" Type="int" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" />
+          <Property Name="modify_user" Type="int" />
+          <Property Name="delete_user" Type="int" />
+          <Property Name="delete_date" Type="datetime" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="mgrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopDbModel2StoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopDbModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacttitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titleofcourtesy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hiredate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mgrid" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Boolean" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK_Employees_Employees" FromRole="Employees" ToRole="Employees1" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employees1" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="orderid" />
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="qty" Type="Int16" Nullable="false" />
+          <Property Name="discount" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custid" Type="Int32" />
+          <Property Name="empid" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="requireddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shippeddate" Type="DateTime" Precision="3" />
+          <Property Name="shipperid" Type="Int32" Nullable="false" />
+          <Property Name="freight" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="shipname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipaddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipcity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shipregion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shippostalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="shipcountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplierid" Type="Int32" Nullable="false" />
+          <Property Name="categoryid" Type="Int32" Nullable="false" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="discontinued" Type="Boolean" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperid" />
+          </Key>
+          <Property Name="shipperid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="Int32" />
+          <Property Name="deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacttitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="postalcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creation_user" Type="Int32" Nullable="false" />
+          <Property Name="modify_date" Type="DateTime" Precision="3" />
+          <Property Name="modify_user" Type="Int32" />
+          <Property Name="delete_user" Type="Int32" />
+          <Property Name="delete_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="mgrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopDbEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopDbModel2StoreContainer" CdmEntityContainer="ShopDbEntities2">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ShopDbModel2.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ShopDbModel2.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="contacttitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ShopDbModel2.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="titleofcourtesy" ColumnName="titleofcourtesy" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mgrid" ColumnName="mgrid" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ShopDbModel2.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ShopDbModel2.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="requireddate" ColumnName="requireddate" />
+                <ScalarProperty Name="shippeddate" ColumnName="shippeddate" />
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="freight" ColumnName="freight" />
+                <ScalarProperty Name="shipname" ColumnName="shipname" />
+                <ScalarProperty Name="shipaddress" ColumnName="shipaddress" />
+                <ScalarProperty Name="shipcity" ColumnName="shipcity" />
+                <ScalarProperty Name="shipregion" ColumnName="shipregion" />
+                <ScalarProperty Name="shippostalcode" ColumnName="shippostalcode" />
+                <ScalarProperty Name="shipcountry" ColumnName="shipcountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShopDbModel2.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="discontinued" ColumnName="discontinued" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="ShopDbModel2.Shipper">
+              <MappingFragment StoreEntitySet="Shippers">
+                <ScalarProperty Name="shipperid" ColumnName="shipperid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="ShopDbModel2.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="contacttitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creation_user" ColumnName="creation_user" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="modify_user" ColumnName="modify_user" />
+                <ScalarProperty Name="delete_user" ColumnName="delete_user" />
+                <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

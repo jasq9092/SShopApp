@@ -1,0 +1,91 @@
+﻿@model SShopApp.Web.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creation_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creation_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creation_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creation_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modify_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modify_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modify_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modify_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.delete_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.delete_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.delete_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.delete_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.categoryid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
